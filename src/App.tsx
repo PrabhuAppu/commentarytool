@@ -3,48 +3,62 @@ import { Stack, Text, Link, FontWeights } from 'office-ui-fabric-react';
 
 import logo from './fabric.png';
 
+
+import { NavHorizontalStack } from './Navbar';
+import {ContainerHorizontalStack} from './Container';
+// import { initializeIcons } from '@uifabric/icons';
+import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
+import {
+  createTheme,
+  Customizations
+} from 'office-ui-fabric-react';
+
+import { loadTheme } from 'office-ui-fabric-react';
+
+initializeIcons();
+
+
+
+const myTheme = createTheme({
+  palette: {
+    themePrimary: '#db0011',
+    themeLighterAlt: '#fef3f4',
+    themeLighter: '#f9d1d5',
+    themeLight: '#f4abb1',
+    themeTertiary: '#ea5d69',
+    themeSecondary: '#e01b2b',
+    themeDarkAlt: '#c50010',
+    themeDark: '#a7000e',
+    themeDarker: '#7b000a',
+    neutralLighterAlt: '#f3f3f3',
+    neutralLighter: '#efefef',
+    neutralLight: '#e5e5e5',
+    neutralQuaternaryAlt: '#d6d6d6',
+    neutralQuaternary: '#cccccc',
+    neutralTertiaryAlt: '#c4c4c4',
+    neutralTertiary: '#595959',
+    neutralSecondary: '#373737',
+    neutralPrimaryAlt: '#2f2f2f',
+    neutralPrimary: '#000000',
+    neutralDark: '#151515',
+    black: '#0b0b0b',
+    white: '#fafafa',
+  }});
+
 const boldStyle = {
   root: { fontWeight: FontWeights.semibold }
 };
 
+
+
+
 export const App: React.FunctionComponent = () => {
+  Customizations.applySettings({ theme: myTheme });
   return (
-    <Stack
-      horizontalAlign="center"
-      verticalAlign="center"
-      verticalFill
-      styles={{
-        root: {
-          width: '960px',
-          margin: '0 auto',
-          textAlign: 'center',
-          color: '#605e5c'
-        }
-      }}
-      gap={15}
-    >
-      <img src={logo} alt="logo" />
-      <Text variant="xxLarge" styles={boldStyle}>
-        Welcome to Your UI Fabric App
-      </Text>
-      <Text variant="large">For a guide on how to customize this project, check out the UI Fabric documentation.</Text>
-      <Text variant="large" styles={boldStyle}>
-        Essential Links
-      </Text>
-      <Stack horizontal gap={15} horizontalAlign="center">
-        <Link href="https://developer.microsoft.com/en-us/fabric">Docs</Link>
-        <Link href="https://stackoverflow.com/questions/tagged/office-ui-fabric">Stack Overflow</Link>
-        <Link href="https://github.com/officeDev/office-ui-fabric-react/">Github</Link>
-        <Link href="https://twitter.com/officeuifabric">Twitter</Link>
-      </Stack>
-      <Text variant="large" styles={boldStyle}>
-        Design System
-      </Text>
-      <Stack horizontal gap={15} horizontalAlign="center">
-        <Link href="https://developer.microsoft.com/en-us/fabric#/styles/icons">Icons</Link>
-        <Link href="https://developer.microsoft.com/en-us/fabric#/styles/typography">Typography</Link>
-        <Link href="https://developer.microsoft.com/en-us/fabric#/styles/themegenerator">Theme</Link>
-      </Stack>
-    </Stack>
+    <React.Fragment>
+      <NavHorizontalStack />
+      
+      <ContainerHorizontalStack/>
+    </React.Fragment>
   );
 };
